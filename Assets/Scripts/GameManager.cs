@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private int m_MackerelPopulation;
+    private int m_MackerelPopulation = 1000;
     public int tunaPopulation { get; }
     public int sharkPopulation { get; }
 
