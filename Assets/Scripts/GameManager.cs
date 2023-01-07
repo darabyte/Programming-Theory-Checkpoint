@@ -5,9 +5,9 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    private int m_MackerelPopulation = 1000;
-    public int tunaPopulation { get; }
-    public int sharkPopulation { get; }
+    private int m_MackerelPopulation = 2000;
+    public int tunaPopulation { get; private set; }
+    public int sharkPopulation { get; private set; }
 
     // ENCAPSULATION
     public int mackerelPopulation
@@ -40,6 +40,13 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void UpdatePopulationCounts()
+    {
+        m_MackerelPopulation = GameObject.FindObjectsOfType<Mackerel>().Length;
+        tunaPopulation = GameObject.FindObjectsOfType<Tuna>().Length;
+        //sharkPopulation = GameObject.FindObjectsOfType<Shark>().Length;
     }
 
 }

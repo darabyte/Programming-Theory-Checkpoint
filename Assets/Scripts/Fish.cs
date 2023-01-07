@@ -6,9 +6,11 @@ public class Fish : MonoBehaviour
 {
     protected float speed;
     protected float timeBetweenDecisions;
+    protected float timeToStarvation;
 
-    private Vector3 objectivePosition;
-    private float timeSinceDecision = 1000f;
+    protected Vector3 objectivePosition;
+    protected float timeSinceDecision = 1000f;
+    protected float timeSinceLastMeal = 0f;
 
     // Define volume that fish can swim in
     protected Vector3 lowerLimit = new Vector3( -20f,  -10f, -10f);
@@ -20,11 +22,12 @@ public class Fish : MonoBehaviour
     {
         MakeDecision();
         Swim();
+        Starve();
     }
 
     // Change objective position
     // ENCAPSULATION
-    protected void MakeDecision()
+    protected virtual void MakeDecision()
     {
         if (timeSinceDecision > timeBetweenDecisions)
         {
@@ -35,7 +38,7 @@ public class Fish : MonoBehaviour
             float zObjective = Random.Range(lowerLimit.z, upperLimit.z);
             objectivePosition = new Vector3(xObjective, yObjective, zObjective);
 
-            // Rotate fish to face their new goal
+            // Rotate fish to face their new goal (models are rotated 90 degrees)
             Vector3 directionOfTravel = objectivePosition - transform.position;
             transform.rotation = Quaternion.LookRotation(directionOfTravel) * Quaternion.Euler(0, 90, 0);
         }
@@ -60,4 +63,13 @@ public class Fish : MonoBehaviour
         
     }
 
+    private void Starve()
+    {
+        if (timeSinceLastMeal > timeToStarvation)
+        {
+            Destroy(gameObject);
+        }
+
+        timeSinceLastMeal += Time.deltaTime;
+    }
 }
