@@ -7,8 +7,8 @@ public class Tuna : Fish
     // Characteristics of a tuna
     private static float tunaSpeed = 3.5f;
     private static float tunaTimeBetweenDecisions = 3f;
-    public static float probabilityOfBreeding = 0.005f;
-    public static float probabilityOfDrifter = 0.005f;
+    public static float probabilityOfBreeding = 0.0075f;
+    public static float probabilityOfDrifter = 0.0065f;
     public static float tunaTimeToStarvation = 10f; // seconds
 
     private GameObject targetMackerel= null; 
@@ -31,6 +31,7 @@ public class Tuna : Fish
     }
 
     // Tuna swim towards the closest mackerel
+    // POLYMORPHISM
     protected override void MakeDecision()
     {
         if (timeSinceDecision > timeBetweenDecisions || targetMackerel == null)
@@ -70,7 +71,10 @@ public class Tuna : Fish
 
             // Rotate fish to face their new goal (models are rotated 90 degrees)
             Vector3 directionOfTravel = objectivePosition - transform.position;
-            transform.rotation = Quaternion.LookRotation(directionOfTravel) * Quaternion.Euler(0, 90, 0);
+            if (directionOfTravel.magnitude > 0)
+            {
+                transform.rotation = Quaternion.LookRotation(directionOfTravel) * Quaternion.Euler(0, 90, 0);
+            }
         }
         else
         {

@@ -21,6 +21,6 @@ public class PopulationUIManager : MonoBehaviour
         GameManager.instance.UpdatePopulationCounts();
         mackerelText.text = "Mackerel Population: " + GameManager.instance.mackerelPopulation;
         tunaText.text = "Tuna Population: " + GameManager.instance.tunaPopulation;
-        //sharkText.text = "Shark Population: " + GameManager.instance.sharkPopulation;
+        sharkText.text = "Shark Population: " + GameManager.instance.sharkPopulation;
     }
 }

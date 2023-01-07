@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Mackerel
   - Tuna
+  - Shark
   layers:
   - Default
   - TransparentFX

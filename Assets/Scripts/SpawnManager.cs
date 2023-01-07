@@ -10,6 +10,7 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject mackerelPrefab;
     public GameObject tunaPrefab;
+    public GameObject sharkPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -42,7 +43,12 @@ public class SpawnManager : MonoBehaviour
 
     private void SpawnTuna()
     {
-        Instantiate(tunaPrefab, spawnPoint, mackerelPrefab.transform.rotation);
+        Instantiate(tunaPrefab, spawnPoint, tunaPrefab.transform.rotation);
+    }
+
+    private void SpawnShark()
+    {
+        Instantiate(sharkPrefab, spawnPoint, sharkPrefab.transform.rotation);
     }
 
     private void BreedFishes()
@@ -55,6 +61,11 @@ public class SpawnManager : MonoBehaviour
         if (NewFishShowsUp(Tuna.probabilityOfBreeding, GameManager.instance.tunaPopulation, Tuna.probabilityOfDrifter))
         {
             SpawnTuna();
+        }
+
+        if (NewFishShowsUp(Shark.probabilityOfBreeding, GameManager.instance.sharkPopulation, Shark.probabilityOfDrifter))
+        {
+            SpawnShark();
         }
     }
 

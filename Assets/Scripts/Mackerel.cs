@@ -8,8 +8,8 @@ public class Mackerel : Fish
     // Characteristics of a mackerel
     private static float mackerelSpeed = 3;
     private static float mackerelTimeBetweenDecisions = 100;
-    public static float probabilityOfBreeding = 0.1f; // Expected new fish per spawn period per fish
-    public static float probabilityOfDrifter = 0f;
+    public static float probabilityOfBreeding = 0.01f; // Expected new fish per spawn period per fish
+    public static float probabilityOfDrifter = 0.02f;
     private static float mackerelTimeToStarvation = 10_000;
 
     private void Start()

@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance;
-    private int m_MackerelPopulation = 2000;
+    public static GameManager instance { get; private set; }
+    private int m_MackerelPopulation = 2;
     public int tunaPopulation { get; private set; }
     public int sharkPopulation { get; private set; }
 
@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
 
         set
         {
-            if (value < 0)
+            if (value < 2)
             {
-                Debug.LogError("Mackerel population must be zero or more.");
+                Debug.LogError("Mackerel population must be one breeding pair or more.");
             }
             else
             {
@@ -46,7 +46,7 @@ public class GameManager : MonoBehaviour
     {
         m_MackerelPopulation = GameObject.FindObjectsOfType<Mackerel>().Length;
         tunaPopulation = GameObject.FindObjectsOfType<Tuna>().Length;
-        //sharkPopulation = GameObject.FindObjectsOfType<Shark>().Length;
+        sharkPopulation = GameObject.FindObjectsOfType<Shark>().Length;
     }
 
 }
